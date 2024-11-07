@@ -1,1 +1,1 @@
-# home-sweet-home
+# home-smart-home
