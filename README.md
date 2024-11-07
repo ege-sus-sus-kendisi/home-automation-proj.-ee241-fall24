@@ -3,32 +3,29 @@
 ## Features
 
 ### Lighting  
-- Detects presence
+- Presence detection
 - Brightness and color controls
 - Programmable based on time schedules (e.g., automatically turns off at night)  
-- Remotely controllable via smartphone apps  
 
 ### Heating  
-- Automatic internal temperature adjustment based on weather conditions
-- Remote control  
-- Automatic ventilation control based on air quality  
+- Internal temperature adjustment based on weather conditions 
+- Ventilation control based on air quality  
 
 ### Security Systems  
 - Remotely controlled locks  
-- Biometric methods: fingerprint, facial recognition  
-- Automatic doors  
+- Biometric methods on locks such as fingerprint and facial recognition  
+- Presence detection on doors
 - Auto-locking for unattended doors  
 - Alarm systems for intruders and hazards (gas leaks, fire)  
-- Video doorbells  
+- Video doorbells
 
 ### House and Appliance Control  
-- *Power monitoring on appliances
+- Power monitoring on appliances
 - Automatable blinds and curtains based on time and external sunlight 
 - Presence-detecting garage door
 
 ### Garden Systems  
-- Automatic watering based on weather and soil data  
-- Automated outdoor lighting  
+- Irrigation systems based on weather and soil data
 
 ### Control
-- Remotely control for all features via mobile apps and remotes.
+- Remote control for all features via devices and mobile apps.
