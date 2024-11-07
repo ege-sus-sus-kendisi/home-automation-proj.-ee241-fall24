@@ -1,14 +1,15 @@
-# home SMART home
+# Home SMART Home
 
 ## Features
 
-### Smart Lighting  
-- Detects presence  
+### Lighting  
+- Detects presence
+- Brightness and color controls
 - Programmable based on time schedules (e.g., automatically turns off at night)  
 - Remotely controllable via smartphone apps  
 
 ### Heating  
-- Adjusts to interior and exterior temperatures  
+- Weather-adjustable internal heating
 - Remotely controllable  
 - Includes ventilation control based on air quality  
 
