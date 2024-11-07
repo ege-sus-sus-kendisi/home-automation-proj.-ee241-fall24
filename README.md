@@ -1,1 +1,1 @@
-# home-automation-proj.-ee241-fall24
+# home-sweet-home
