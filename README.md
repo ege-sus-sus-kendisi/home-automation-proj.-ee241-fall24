@@ -12,20 +12,21 @@
 - Ventilation control based on air quality  
 
 ### Security Systems  
-- Remotely controlled locks  
+- Remotely controllable locks  
 - Biometric methods on locks such as fingerprint and facial recognition  
-- Presence detection on doors
 - Auto-locking for unattended doors  
 - Alarm systems for intruders and hazards (gas leaks, fire)  
 - Video doorbells
 
 ### House and Appliance Control  
-- Power monitoring on appliances
-- Automatable blinds and curtains based on time and external sunlight 
-- Presence-detecting garage door
-
-### Garden Systems  
-- Irrigation systems based on weather and soil data
-
-### Control
 - Remote control for all features via devices and mobile apps.
+- Presence detection on doors
+- Presence detection on the garage door
+- Automated power-saving modes for unused appliances
+- Automatable blinds and curtains based on time and external sunlight
+- Automatic valves to shut off any taps left open
+
+### Garden and Pets
+- Irrigation systems for the garden based on weather and soil data
+- Automated pet feeders
+- Smart pet doors that detect your pet's collar
