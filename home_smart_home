@@ -1,1 +1,33 @@
-hi!
+module lighting(
+    input wire clk,
+    input wire reset,
+    input wire presence_detected,
+    input wire [7:0] brightness,
+    input wire [23:0] color,
+    input wire [7:0] hour,
+    output reg light_on,
+    output reg [7:0] light_brightness,
+    output reg [23:0] light_color
+);
+
+parameter OFF_HOUR = 22;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        light_on <= 0;
+        light_brightness <= 0;
+        light_color <= 24'h000000;
+    end else begin
+        if (presence_detected && hour < OFF_HOUR) begin
+            light_on <= 1;
+            light_brightness <= brightness;
+            light_color <= color;
+        end else begin
+            light_on <= 0;
+            light_brightness <= 0;
+            light_color <= 24'h000000;
+        end
+    end
+end
+
+endmodule
