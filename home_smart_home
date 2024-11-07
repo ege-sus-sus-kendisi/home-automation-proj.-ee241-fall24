@@ -1,3 +1,5 @@
+// LIGHTING
+
 module lighting(
     input wire clk,
     input wire reset,
@@ -27,6 +29,149 @@ always @(posedge clk or posedge reset) begin
             light_brightness <= 0;
             light_color <= 24'h000000;
         end
+    end
+end
+
+endmodule
+
+
+
+// HEATING
+
+module heating(
+    input wire clk,
+    input wire reset,
+    input wire [7:0] internal_temp,
+    input wire [7:0] external_temp,
+    input wire [7:0] air_quality,
+    output reg heater_on,
+    output reg ventilator_on
+);
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        heater_on <= 0;
+        ventilator_on <= 0;
+    end else begin
+        if (internal_temp < external_temp) begin
+            heater_on <= 1;
+        end else begin
+            heater_on <= 0;
+        end
+        if (air_quality < 50) begin
+            ventilator_on <= 1;
+        end else begin
+            ventilator_on <= 0;
+        end
+    end
+end
+
+endmodule
+
+
+
+// SECURITY
+
+module security(
+    input wire clk,
+    input wire reset,
+    input wire remote_lock,
+    input wire biometric_fingerprint,
+    input wire biometric_face,
+    input wire presence_detected,
+    output reg door_locked,
+    output reg alarm_on
+);
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        door_locked <= 1;
+        alarm_on <= 0;
+    end else begin
+        if (remote_lock || !biometric_fingerprint || !biometric_face) begin
+            door_locked <= 1;
+        end else if (!presence_detected) begin
+            door_locked <= 1;
+        end else begin
+            door_locked <= 0;
+        end
+        if (!presence_detected) begin
+            alarm_on <= 1;
+        end else begin
+            alarm_on <= 0;
+        end
+    end
+end
+
+endmodule
+
+
+
+// APPLIANCE CONTROL
+
+module appliance_control(
+    input wire clk,
+    input wire reset,
+    input wire remote_control,
+    input wire presence_detected,
+    input wire [7:0] hour,
+    output reg appliance_on,
+    output reg blinds_open,
+    output reg valve_closed
+);
+
+parameter OFF_HOUR = 22;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        appliance_on <= 0;
+        blinds_open <= 0;
+        valve_closed <= 1;
+    end else begin
+        if (remote_control || presence_detected) begin
+            appliance_on <= 1;
+        end else begin
+            appliance_on <= 0;
+        end
+        if (hour >= OFF_HOUR) begin
+            blinds_open <= 0;
+        end else begin
+            blinds_open <= 1;
+        end
+        valve_closed <= !presence_detected;
+    end
+end
+
+endmodule
+
+
+
+// GARDEN AND PETS
+
+module garden_pets(
+    input wire clk,
+    input wire reset,
+    input wire [7:0] soil_moisture,
+    input wire [7:0] weather_condition,
+    input wire pet_detected,
+    output reg irrigation_on,
+    output reg feeder_on,
+    output reg pet_door_open
+);
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        irrigation_on <= 0;
+        feeder_on <= 0;
+        pet_door_open <= 0;
+    end else begin
+        if (soil_moisture < 50 && weather_condition < 20) begin
+            irrigation_on <= 1;
+        end else begin
+            irrigation_on <= 0;
+        end
+        feeder_on <= !pet_detected;
+        pet_door_open <= pet_detected;
     end
 end
 
