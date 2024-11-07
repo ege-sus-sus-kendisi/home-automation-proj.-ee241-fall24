@@ -1,6 +1,6 @@
-# home-smart-home
+# home SMART home
 
-## Home Automation Features
+## Features
 
 ### Smart Lighting  
 - Detects presence  
