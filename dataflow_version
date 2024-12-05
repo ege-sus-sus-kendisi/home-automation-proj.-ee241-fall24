@@ -19,3 +19,86 @@ assign light_brightness = light_on ? brightness : 8'b0;
 assign light_color = light_on ? color : 24'h000000;
 
 endmodule
+
+
+
+// HEATING
+
+module heating(
+    input wire clk,
+    input wire reset,
+    input wire [7:0] internal_temp,
+    input wire [7:0] external_temp,
+    input wire [7:0] air_quality,
+    output wire heater_on,
+    output wire ventilator_on
+);
+
+assign heater_on = !reset && (internal_temp < external_temp);
+assign ventilator_on = !reset && (air_quality < 50);
+
+endmodule
+
+
+
+// SECURITY
+
+module security(
+    input wire clk,
+    input wire reset,
+    input wire remote_lock,
+    input wire biometric_fingerprint,
+    input wire biometric_face,
+    input wire presence_detected,
+    output wire door_locked,
+    output wire alarm_on
+);
+
+assign door_locked = reset || remote_lock || !biometric_fingerprint || !biometric_face || !presence_detected;
+assign alarm_on = !reset && !presence_detected;
+
+endmodule
+
+
+
+// APPLIANCE CONTROL
+
+module appliance_control(
+    input wire clk,
+    input wire reset,
+    input wire remote_control,
+    input wire presence_detected,
+    input wire [7:0] hour,
+    output wire appliance_on,
+    output wire blinds_open,
+    output wire valve_closed
+);
+
+parameter OFF_HOUR = 22;
+
+assign appliance_on = !reset && (remote_control || presence_detected);
+assign blinds_open = !reset && (hour < OFF_HOUR);
+assign valve_closed = !reset && !presence_detected;
+
+endmodule
+
+
+
+// GARDEN AND PETS
+
+module garden_pets(
+    input wire clk,
+    input wire reset,
+    input wire [7:0] soil_moisture,
+    input wire [7:0] weather_condition,
+    input wire pet_detected,
+    output wire irrigation_on,
+    output wire feeder_on,
+    output wire pet_door_open
+);
+
+assign irrigation_on = !reset && (soil_moisture < 50) && (weather_condition < 20);
+assign feeder_on = !reset && !pet_detected;
+assign pet_door_open = !reset && pet_detected;
+
+endmodule
