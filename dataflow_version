@@ -1,0 +1,21 @@
+// LIGHTING
+
+module lighting(
+    input wire clk,
+    input wire reset,
+    input wire presence_detected,
+    input wire [7:0] brightness,
+    input wire [23:0] color,
+    input wire [7:0] hour,
+    output wire light_on,
+    output wire [7:0] light_brightness,
+    output wire [23:0] light_color
+);
+
+parameter OFF_HOUR = 22;
+
+assign light_on = !reset && presence_detected && (hour < OFF_HOUR);
+assign light_brightness = light_on ? brightness : 8'b0;
+assign light_color = light_on ? color : 24'h000000;
+
+endmodule
