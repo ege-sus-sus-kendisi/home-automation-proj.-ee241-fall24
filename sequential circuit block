@@ -1,0 +1,88 @@
+module smart_home_system(
+    input wire clk,
+    input wire reset,
+    input wire presence_detected,
+    input wire [7:0] brightness,
+    input wire [23:0] color,
+    input wire [7:0] hour,
+    input wire [7:0] internal_temp,
+    input wire [7:0] external_temp,
+    input wire [7:0] air_quality,
+    input wire remote_lock,
+    input wire biometric_fingerprint,
+    input wire biometric_face,
+    input wire remote_control,
+    input wire [7:0] soil_moisture,
+    input wire [7:0] weather_condition,
+    input wire pet_detected,
+    output wire light_on,
+    output wire [7:0] light_brightness,
+    output wire [23:0] light_color,
+    output wire heater_on,
+    output wire ventilator_on,
+    output wire door_locked,
+    output wire alarm_on,
+    output wire appliance_on,
+    output wire blinds_open,
+    output wire valve_closed,
+    output wire irrigation_on,
+    output wire feeder_on,
+    output wire pet_door_open
+);
+
+    lighting lighting_inst (
+        .clk(clk),
+        .reset(reset),
+        .presence_detected(presence_detected),
+        .brightness(brightness),
+        .color(color),
+        .hour(hour),
+        .light_on(light_on),
+        .light_brightness(light_brightness),
+        .light_color(light_color)
+    );
+
+    heating heating_inst (
+        .clk(clk),
+        .reset(reset),
+        .internal_temp(internal_temp),
+        .external_temp(external_temp),
+        .air_quality(air_quality),
+        .heater_on(heater_on),
+        .ventilator_on(ventilator_on)
+    );
+
+    security security_inst (
+        .clk(clk),
+        .reset(reset),
+        .remote_lock(remote_lock),
+        .biometric_fingerprint(biometric_fingerprint),
+        .biometric_face(biometric_face),
+        .presence_detected(presence_detected),
+        .door_locked(door_locked),
+        .alarm_on(alarm_on)
+    );
+
+    appliance_control appliance_control_inst (
+        .clk(clk),
+        .reset(reset),
+        .remote_control(remote_control),
+        .presence_detected(presence_detected),
+        .hour(hour),
+        .appliance_on(appliance_on),
+        .blinds_open(blinds_open),
+        .valve_closed(valve_closed)
+    );
+
+    garden_pets garden_pets_inst (
+        .clk(clk),
+        .reset(reset),
+        .soil_moisture(soil_moisture),
+        .weather_condition(weather_condition),
+        .pet_detected(pet_detected),
+        .irrigation_on(irrigation_on),
+        .feeder_on(feeder_on),
+        .pet_door_open(pet_door_open)
+    );
+
+endmodule
